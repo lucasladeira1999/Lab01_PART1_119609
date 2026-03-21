@@ -1,2 +1,13 @@
 # Lab01_PART1_119609
-Laboratório de Fundamentos de  Engenharia de Dados Lucas Menezes Ladeira
+
+Laboratorio de Fundamentos de Engenharia de Dados - Lucas Menezes Ladeira
+
+## Executar camada Bronze
+
+Preencha a configuracao no arquivo `.env`:
+
+Depois execute:
+
+```powershell
+python main.py
+```
