@@ -1,0 +1,6 @@
+2026-03-23 10:41:48 | INFO | Iniciando processamento da camada Gold
+2026-03-23 10:41:48 | INFO | Arquivo Silver lido com 1245707 linhas
+2026-03-23 10:41:59 | INFO | Carga executada com sucesso para interface_geracao_usina com 1245707 linhas
+2026-03-23 10:42:12 | INFO | Procedure de transferencia executada com sucesso
+2026-03-23 10:42:12 | INFO | Tabela de interface truncada com sucesso
+2026-03-23 10:42:12 | INFO | Processamento Gold concluido com sucesso

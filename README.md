@@ -4,7 +4,7 @@ Laboratorio de Fundamentos de Engenharia de Dados - Lucas Menezes Ladeira
 
 ## Visao Geral
 
-Este projeto implementa um pipeline em arquitetura Medallion com as camadas Bronze, Silver e Gold para dados de geracao de usinas do ONS. O fluxo principal faz a ingestao dos arquivos brutos, o tratamento analitico em Parquet, a carga para o Postgres e a geracao de metricas de negocio.
+Este projeto implementa um pipeline em arquitetura Medallion com as camadas Bronze, Silver e Gold para dados de geracao de usinas do ONS. O fluxo principal realiza a ingestao dos arquivos brutos, o tratamento analitico em Parquet, a carga para o Postgres e a geracao de metricas de negocio.
 
 ## Arquitetura
 
@@ -13,7 +13,7 @@ Fluxo do dado:
 ```text
 Fonte ONS (CSV)
     ->
-Python Bronze 
+Python Bronze
     ->
 data/raw/*.csv
     ->
@@ -39,8 +39,8 @@ Componentes principais:
 - `src/silver_charts.py`: geracao dos graficos da Silver
 - `src/silver_summary.py`: resumo de qualidade e relatorio Markdown
 - `src/gold.py`: carga da interface no Postgres e chamada da procedure
-- `main.py`: orquestra as rodadas dos códigos
 - `src/business_metrics.py`: execucao das queries de negocio e geracao dos relatorios em `out/`
+- `main.py`: ponto central de execucao do pipeline
 
 ## Estrutura do Projeto
 
@@ -59,6 +59,7 @@ sql/
 src/
 main.py
 requirements.txt
+README.md
 ```
 
 ## Documentacao da Tarefa
@@ -80,6 +81,9 @@ Script principal:
 Evidencias geradas:
 - arquivos como `data/raw/GERACAO_USINA-2_2026_01.csv`
 - log em `logs/bronze.log`
+
+Observacao:
+- os arquivos raw nao foram versionados no repositorio, mas a execucao da etapa foi registrada nas evidencias e nos logs
 
 ### 2. Silver
 
@@ -132,6 +136,42 @@ Modelo final:
 - `dim_subsistema`
 - `dim_estado`
 - `fato_geracao`
+
+### Modelagem Star Schema
+
+A camada Gold foi modelada em Star Schema, com uma tabela fato central e dimensoes descritivas ao redor.
+
+Tabela fato:
+
+- `fato_geracao`
+- representa o evento de geracao medido no tempo
+- contem a medida numerica principal do modelo: `val_geracao`
+
+Dimensoes:
+
+- `dim_usina`: descreve a usina, seu tipo, combustivel, CEG e modalidade de operacao
+- `dim_subsistema`: descreve o subsistema eletrico
+- `dim_estado`: descreve o estado associado ao registro de geracao
+
+Granularidade da fato:
+
+- um registro por `din_instante`, `id_ons`, `id_subsistema` e `id_estado`
+
+Chaves de relacionamento:
+
+- `fato_geracao.id_ons -> dim_usina.id_ons`
+- `fato_geracao.id_subsistema -> dim_subsistema.id_subsistema`
+- `fato_geracao.id_estado -> dim_estado.id_estado`
+
+Justificativa da modelagem:
+
+- a tabela fato ficou enxuta, concentrando tempo, chaves de contexto e medida de geracao
+- os atributos descritivos foram concentrados nas dimensoes para facilitar consulta e reduzir redundancia
+- o modelo atende bem consultas analiticas por fonte, estado, subsistema, usina e combustivel
+
+Observacao:
+
+- o diagrama ER da camada Gold acompanha a entrega no arquivo sql/create/diagramaER_Lab01.png
 
 ### 4. Metricas de Negocio
 
@@ -196,6 +236,68 @@ Resumo observado no processamento atual:
 
 O resumo completo pode ser consultado em `reports/silver_report.md`.
 
+## Evidencias da Execucao
+
+As evidencias da entrega foram organizadas em dois grupos: artefatos gerados automaticamente pelo pipeline e prints de comprovacao da execucao.
+
+### 1. Artefatos gerados pelo pipeline
+
+Relatorios e saidas geradas automaticamente:
+
+- `reports/silver_report.md`
+- `reports/figures/geracao_por_hora_e_mes.png`
+- `reports/figures/participacao_fonte_por_mes.png`
+- `reports/figures/participacao_por_estado.png`
+- `reports/figures/participacao_termicas_combustivel.png`
+- `reports/figures/geracao_por_subsistema.png`
+- `out/query_01_fonte_maior_crescimento.md`
+- `out/query_02_estado_maior_participacao.md`
+- `out/query_03_subsistema_dependencia_termica.md`
+- `out/query_04_combustivel_termico_mes.md`
+- `out/query_05_top_10_usinas.md`
+- `out/query_06_top_3_usinas_por_fonte.md`
+
+Esses arquivos documentam a camada Silver e as metricas de negocio de forma reproduzivel.
+
+### 2. Prints de comprovacao da execucao
+
+Os prints abaixo acompanham a entrega final e ilustram a execucao pratica de cada etapa.
+
+### Figura 1. Bronze
+
+- mostra a pasta `data/raw/` com os arquivos CSV baixados
+- mostra a abertura de um dos arquivos raw, comprovando a ingestao "as-is"
+
+### Figura 2. Silver
+
+- mostra o relatorio `reports/silver_report.md`
+- evidencia a contagem de nulos, os tipos de colunas e as estatisticas descritivas
+
+### Figura 3. Silver Graficos
+
+- mostra os graficos gerados em `reports/figures/`
+- destaca a analise por fonte, estado, combustivel termico e subsistema
+
+### Figura 4. Gold - Fato
+
+- mostra a consulta em `fato_geracao`
+- comprova que a carga final foi transferida com sucesso para a tabela fato
+
+### Figura 5. Gold - Dim Usina
+
+- mostra a consulta em `dim_usina`
+- comprova a carga da dimensao de usinas e seus atributos descritivos
+
+### Figura 6. Gold - Dim Subsistema
+
+- mostra a consulta em `dim_subsistema`
+- comprova a carga da dimensao de subsistemas
+
+### Figura 7. Gold - Dim Estado
+
+- mostra a consulta em `dim_estado`
+- comprova a carga da dimensao de estados
+
 ## Instrucoes de Execucao
 
 ### 1. Criar e ativar a venv
@@ -231,7 +333,7 @@ DATABASE_POSTGRES=...
 2. Executar a Silver para gerar o Parquet e o relatorio
 3. Criar objetos no Postgres com os scripts em `sql/create/`
 4. Executar a Gold para carregar a interface e chamar a procedure
-5. Executar as metricas de negocio para gerar os relatórios em `out/`
+5. Executar as metricas de negocio para gerar os relatorios em `out/`
 
 ### 5. Scripts SQL no banco
 
@@ -254,6 +356,7 @@ python main.py
 ```
 
 Observacao:
+
 - a `main.py` pode ser ajustada para comentar ou descomentar Bronze, Silver, Gold e metricas conforme a etapa desejada
 
 ## Artefatos Gerados

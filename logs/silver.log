@@ -1,0 +1,30 @@
+2026-03-21 18:58:48 | INFO | Iniciando processamento da camada Silver
+2026-03-21 18:58:48 | INFO | Lendo 3 arquivos raw para a camada Silver
+2026-03-21 18:58:57 | INFO | Arquivo Silver salvo em C:\Users\LucasLadeira\Documents\FundamentosEndDados\Lab01_PART1_119609\data\silver\geracao_usina_silver.parquet
+2026-03-21 18:59:15 | INFO | Relatorio Silver salvo em C:\Users\LucasLadeira\Documents\FundamentosEndDados\Lab01_PART1_119609\reports\silver_report.md
+2026-03-21 18:59:15 | INFO | Processamento Silver concluido com sucesso
+2026-03-21 18:59:50 | INFO | Iniciando processamento da camada Silver
+2026-03-21 18:59:50 | INFO | Lendo 3 arquivos raw para a camada Silver
+2026-03-21 18:59:56 | INFO | Arquivo Silver salvo em C:\Users\LucasLadeira\Documents\FundamentosEndDados\Lab01_PART1_119609\data\silver\geracao_usina_silver.parquet
+2026-03-21 19:00:13 | INFO | Relatorio Silver salvo em C:\Users\LucasLadeira\Documents\FundamentosEndDados\Lab01_PART1_119609\reports\silver_report.md
+2026-03-21 19:00:13 | INFO | Processamento Silver concluido com sucesso
+2026-03-21 19:04:05 | INFO | Iniciando processamento da camada Silver
+2026-03-21 19:04:05 | INFO | Lendo 3 arquivos raw para a camada Silver
+2026-03-21 19:04:11 | INFO | Arquivo Silver salvo em C:\Users\LucasLadeira\Documents\FundamentosEndDados\Lab01_PART1_119609\data\silver\geracao_usina_silver.parquet
+2026-03-21 19:04:29 | INFO | Relatorio Silver salvo em C:\Users\LucasLadeira\Documents\FundamentosEndDados\Lab01_PART1_119609\reports\silver_report.md
+2026-03-21 19:04:29 | INFO | Processamento Silver concluido com sucesso
+2026-03-21 19:24:23 | INFO | Iniciando processamento da camada Silver
+2026-03-21 19:24:23 | INFO | Lendo 3 arquivos raw para a camada Silver
+2026-03-21 19:24:29 | INFO | Arquivo Silver salvo em C:\Users\LucasLadeira\Documents\FundamentosEndDados\Lab01_PART1_119609\data\silver\geracao_usina_silver.parquet
+2026-03-21 19:24:41 | INFO | Relatorio Silver salvo em C:\Users\LucasLadeira\Documents\FundamentosEndDados\Lab01_PART1_119609\reports\silver_report.md
+2026-03-21 19:24:41 | INFO | Processamento Silver concluido com sucesso
+2026-03-21 19:33:13 | INFO | Iniciando processamento da camada Silver
+2026-03-21 19:33:13 | INFO | Lendo 3 arquivos raw para a camada Silver
+2026-03-21 19:33:18 | INFO | Arquivo Silver salvo em C:\Users\LucasLadeira\Documents\FundamentosEndDados\Lab01_PART1_119609\data\silver\geracao_usina_silver.parquet
+2026-03-21 19:33:29 | INFO | Relatorio Silver salvo em C:\Users\LucasLadeira\Documents\FundamentosEndDados\Lab01_PART1_119609\reports\silver_report.md
+2026-03-21 19:33:29 | INFO | Processamento Silver concluido com sucesso
+2026-03-21 19:35:12 | INFO | Iniciando processamento da camada Silver
+2026-03-21 19:35:12 | INFO | Lendo 3 arquivos raw para a camada Silver
+2026-03-21 19:35:17 | INFO | Arquivo Silver salvo em C:\Users\LucasLadeira\Documents\FundamentosEndDados\Lab01_PART1_119609\data\silver\geracao_usina_silver.parquet
+2026-03-21 19:35:28 | INFO | Relatorio Silver salvo em C:\Users\LucasLadeira\Documents\FundamentosEndDados\Lab01_PART1_119609\reports\silver_report.md
+2026-03-21 19:35:28 | INFO | Processamento Silver concluido com sucesso

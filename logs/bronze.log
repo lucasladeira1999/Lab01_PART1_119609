@@ -1,0 +1,9 @@
+2026-03-21 18:17:30 | INFO | Iniciando ingestao Bronze para a URL https://dadosabertos.aneel.gov.br/dataset/3e153db4-a503-4093-88be-75d31b002dcf/resource/56f1c242-5017-4cef-a365-0a96fffb0f2b/download/samp-2026.csv
+2026-03-21 18:17:42 | INFO | Ingestao Bronze concluida com sucesso. Arquivo salvo em C:\Users\LucasLadeira\Documents\FundamentosEndDados\Lab01_PART1_119609\data\raw\samp-2026.csv
+2026-03-21 18:24:26 | INFO | Iniciando ingestao Bronze para a URL https://dadosabertos.aneel.gov.br/dataset/3e153db4-a503-4093-88be-75d31b002dcf/resource/56f1c242-5017-4cef-a365-0a96fffb0f2b/download/samp-2026.csv
+2026-03-21 19:03:08 | INFO | Iniciando ingestao Bronze para a URL https://ons-aws-prod-opendata.s3.amazonaws.com/dataset/geracao_usina_2_ho/GERACAO_USINA-2_2026_01.csv
+2026-03-21 19:03:28 | INFO | Ingestao Bronze concluida com sucesso. Arquivo salvo em C:\Users\LucasLadeira\Documents\FundamentosEndDados\Lab01_PART1_119609\data\raw\GERACAO_USINA-2_2026_01.csv
+2026-03-21 19:03:28 | INFO | Iniciando ingestao Bronze para a URL https://ons-aws-prod-opendata.s3.amazonaws.com/dataset/geracao_usina_2_ho/GERACAO_USINA-2_2026_02.csv
+2026-03-21 19:03:45 | INFO | Ingestao Bronze concluida com sucesso. Arquivo salvo em C:\Users\LucasLadeira\Documents\FundamentosEndDados\Lab01_PART1_119609\data\raw\GERACAO_USINA-2_2026_02.csv
+2026-03-21 19:03:45 | INFO | Iniciando ingestao Bronze para a URL https://ons-aws-prod-opendata.s3.amazonaws.com/dataset/geracao_usina_2_ho/GERACAO_USINA-2_2026_03.csv
+2026-03-21 19:04:05 | INFO | Ingestao Bronze concluida com sucesso. Arquivo salvo em C:\Users\LucasLadeira\Documents\FundamentosEndDados\Lab01_PART1_119609\data\raw\GERACAO_USINA-2_2026_03.csv
