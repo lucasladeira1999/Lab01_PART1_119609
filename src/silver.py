@@ -59,13 +59,6 @@ class Silver:
         except Exception as exc:
             raise IOError(f"Erro ao ler os arquivos raw: {exc}") from exc
 
-    def normalize_column_name(self, column_name: str) -> str:
-        normalized = unicodedata.normalize("NFKD", column_name)
-        normalized = normalized.encode("ascii", "ignore").decode("utf-8")
-        normalized = normalized.lower()
-        normalized = re.sub(r"[^a-z0-9]+", "_", normalized)
-        return normalized.strip("_")
-
     def normalize_text_value(self, text_value: str) -> str:
         normalized = unicodedata.normalize("NFKD", str(text_value))
         normalized = normalized.encode("ascii", "ignore").decode("utf-8")
@@ -74,9 +67,16 @@ class Silver:
     def standardize_column_names(self, dataframe: pd.DataFrame) -> pd.DataFrame:
         try:
             dataframe = dataframe.copy()
-            dataframe.columns = [
-                self.normalize_column_name(column_name) for column_name in dataframe.columns
-            ]
+            standardized_columns = []
+
+            for column_name in dataframe.columns:
+                normalized = unicodedata.normalize("NFKD", column_name)
+                normalized = normalized.encode("ascii", "ignore").decode("utf-8")
+                normalized = normalized.lower()
+                normalized = re.sub(r"[^a-z0-9]+", "_", normalized)
+                standardized_columns.append(normalized.strip("_"))
+
+            dataframe.columns = standardized_columns
             return dataframe
         except Exception as exc:
             raise ValueError(f"Erro ao padronizar nomes de colunas: {exc}") from exc
